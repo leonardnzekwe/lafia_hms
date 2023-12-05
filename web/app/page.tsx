@@ -96,9 +96,9 @@ export default function Home() {
               <div className='bg-teal-600 p-2 rounded-lg'>
                 <p>Ifeanyi Akamigbo</p>
                 <div className='flex- flex-col items-center justify-center space-x-2'>
-                  <Link href='https://github.com/leonardnzekwe' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Github</Link>
-                  <Link href='https://twitter.com/leonardnzekwe' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Twitter</Link>
-                  <Link href='https://www.linkedin.com/in/leonardnzekwe' target='_blank' rel='noopener noreferrer' className='hover:text-black'>LinkedIn</Link>
+                  <Link href='https://github.com/valentine1244' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Github</Link>
+                  <Link href='https://twitter.com/akamigboi' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Twitter</Link>
+                  <Link href='https://www.linkedin.com/in/ifeanyi-akamigbo-9678ba192' target='_blank' rel='noopener noreferrer' className='hover:text-black'>LinkedIn</Link>
                 </div>
               </div>
               <div className='bg-teal-600 p-2 rounded-lg'>
@@ -116,9 +116,9 @@ export default function Home() {
       {/* Footer Section */}
       <div className='sticky bottom-0 bg-teal-500 p-2 my-4 mx-auto w-fit rounded-lg'>
         <div className='flex flex-row items-center justify-center space-x-5'>
-          <Link href='https://github.com/leonardnzekwe/lafia_hms.git' className=''>Github Repo</Link>
-          <Link href='' className=''>Demo Video</Link>
-          <Link href={process.env.NEXT_PUBLIC_BACKEND_URL || ''} className=''>API</Link>
+          <Link href='https://github.com/leonardnzekwe/lafia_hms.git' className='hover:text-black'>Github Repo</Link>
+          <Link href='' className='hover:text-black'>Demo Video</Link>
+          <Link href={process.env.NEXT_PUBLIC_BACKEND_URL || ''} className='hover:text-black'>API</Link>
         </div>
       </div>
       <Link href='#home' className='fixed bottom-0 right-0 m-4'>Back to Top</Link>
