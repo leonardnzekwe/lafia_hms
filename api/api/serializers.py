@@ -5,23 +5,8 @@ from api.models import (
     Nurse,
     Appointment,
     Prescription,
-    MedicalRecord,
     Inventory,
-    Billing,
-    Speciality,
-    Ward,
-    Bed,
-    LabTest,
-    MedicalHistory,
-    Medication,
 )
-
-
-# Speciality Serializer
-class SpecialitySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Speciality
-        fields = "__all__"
 
 
 # Patient Serializer
@@ -47,69 +32,66 @@ class NurseSerializer(serializers.ModelSerializer):
 
 # Appointment Serializer
 class AppointmentSerializer(serializers.ModelSerializer):
+    patient_name = serializers.SerializerMethodField()
+    doctor_name = serializers.SerializerMethodField()
+    schedule = serializers.SerializerMethodField()
+
+    def get_patient_name(self, obj):
+        return obj.patient.get_full_name()
+
+    def get_doctor_name(self, obj):
+        return obj.doctor.get_full_name()
+
+    def get_schedule(self, obj):
+        return obj.date_and_time.strftime("%A, %B %d, %Y %I:%M %p")
+
     class Meta:
         model = Appointment
-        fields = "__all__"
+        fields = [
+            "id",
+            "date_and_time",
+            "status",
+            "notes",
+            "patient",
+            "doctor",
+            "patient_name",
+            "doctor_name",
+            "schedule",
+        ]
 
 
 # Prescription Serializer
 class PrescriptionSerializer(serializers.ModelSerializer):
+    patient_name = serializers.SerializerMethodField()
+    doctor_name = serializers.SerializerMethodField()
+    schedule = serializers.SerializerMethodField()
+
+    def get_patient_name(self, obj):
+        return obj.patient.get_full_name()
+
+    def get_doctor_name(self, obj):
+        return obj.doctor.get_full_name()
+
+    def get_schedule(self, obj):
+        return obj.date_and_time.strftime("%A, %B %d, %Y %I:%M %p")
+
     class Meta:
         model = Prescription
-        fields = "__all__"
-
-
-# MedicalRecord Serializer
-class MedicalRecordSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MedicalRecord
-        fields = "__all__"
+        fields = [
+            "id",
+            "medications",
+            "dosage",
+            "date_and_time",
+            "patient",
+            "doctor",
+            "patient_name",
+            "doctor_name",
+            "schedule",
+        ]
 
 
 # Inventory Serializer
 class InventorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventory
-        fields = "__all__"
-
-
-# Billing Serializer
-class BillingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Billing
-        fields = "__all__"
-
-
-# Ward Serializer
-class WardSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ward
-        fields = "__all__"
-
-
-# Bed Serializer
-class BedSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Bed
-        fields = "__all__"
-
-
-# LabTest Serializer
-class LabTestSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = LabTest
-        fields = "__all__"
-
-
-# MedicalHistory Serializer
-class MedicalHistorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MedicalHistory
-        fields = "__all__"
-
-
-# Medication Serializer
-class MedicationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Medication
         fields = "__all__"
