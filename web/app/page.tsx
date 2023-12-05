@@ -29,14 +29,14 @@ export default function Home() {
               <p className='uppercase'>Empower your hospital</p>
               <p>and enhance your patient&apos;s care</p>
             </div>
-            <Link href='/dashboard' className='bg-teal-600 rounded-lg px-20 py-1'>Get Started</Link>
+            <Link href='/dashboard' className='bg-teal-600 rounded-lg px-20 py-1 hover:bg-teal-800 font-bold'>Get Started</Link>
           </div>
         </div>
       </div>
       {/* Main Section */}
       <div className='flex flex-col items-center justify-center space-y-5'>
         <div id="about">
-          <div className='text-center mt-4'>About Project</div>
+          <div className='text-center mt-4 font-bold'>About Project</div>
           <div className='bg-teal-500 rounded-lg m-4 p-4 font-bold'>
             <p className='p-4 m-4'>
               Lafia HMS strives to solve the limitations of traditional
@@ -65,7 +65,7 @@ export default function Home() {
           </div>
         </div>
         <div id="feature">
-          <p className='text-center'>Features</p>
+          <p className='text-center font-bold'>Features</p>
           <div className='bg-teal-500 rounded-lg m-4 p-4 font-bold'>
             <div className='grid grid-cols-2 md:grid-cols-3 gap-4 mt-2 text-center'>
               <p className='bg-teal-600 p-2 rounded-lg'>Appointment Booking</p>
@@ -78,7 +78,7 @@ export default function Home() {
           </div>
         </div>
         <div id="team">
-          <p className='text-center'>Dev Team</p>
+          <p className='text-center font-bold'>Dev Team</p>
           <div className='bg-teal-500 rounded-lg m-4 p-4 font-bold'>
             <p className='text-center'>
               Built as Portfolio Project for
@@ -86,15 +86,17 @@ export default function Home() {
             </p>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-2 text-center'>
               <div className='bg-teal-600 p-2 rounded-lg'>
-                <p>Rahmat Folorunsho</p>
+                <p className='text-gray-800'>Rahmat Folorunsho</p>
+                <p>UI/UX/Graphics, Frontend</p>
                 <div className='flex- flex-col items-center justify-center space-x-2'>
-                  <Link href='https://github.com/rahama-cloud' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Github</Link>
+                  <Link href='https://github.com/rahma-cloud' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Github</Link>
                   <Link href='https://twitter.com/rahma_ix' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Twitter</Link>
                   <Link href='https://www.linkedin.com/in/rahmat-folorunsho-873256189' target='_blank' rel='noopener noreferrer' className='hover:text-black'>LinkedIn</Link>
                 </div>
               </div>
               <div className='bg-teal-600 p-2 rounded-lg'>
-                <p>Ifeanyi Akamigbo</p>
+                <p className='text-gray-800'>Ifeanyi Akamigbo</p>
+                <p>Frontend, Backend</p>
                 <div className='flex- flex-col items-center justify-center space-x-2'>
                   <Link href='https://github.com/valentine1244' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Github</Link>
                   <Link href='https://twitter.com/akamigboi' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Twitter</Link>
@@ -102,7 +104,8 @@ export default function Home() {
                 </div>
               </div>
               <div className='bg-teal-600 p-2 rounded-lg'>
-                <p>Leonard Nzekwe</p>
+                <p className='text-gray-800'>Leonard Nzekwe</p>
+                <p>Backend, DevOps</p>
                 <div className='flex- flex-col items-center justify-center space-x-2'>
                   <Link href='https://github.com/leonardnzekwe' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Github</Link>
                   <Link href='https://twitter.com/leonardnzekwe' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Twitter</Link>
@@ -114,14 +117,14 @@ export default function Home() {
         </div>
       </div>
       {/* Footer Section */}
-      <div className='sticky bottom-0 bg-teal-500 p-2 my-4 mx-auto w-fit rounded-lg'>
+      <div className='sticky bottom-0 bg-teal-500 p-2 my-4 mx-auto w-fit rounded-lg font-bold'>
         <div className='flex flex-row items-center justify-center space-x-5'>
-          <Link href='https://github.com/leonardnzekwe/lafia_hms.git' className='hover:text-black'>Github Repo</Link>
-          <Link href='' className='hover:text-black'>Demo Video</Link>
-          <Link href={process.env.NEXT_PUBLIC_BACKEND_URL || ''} className='hover:text-black'>API</Link>
+          <Link href='https://github.com/leonardnzekwe/lafia_hms.git' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Github Repo</Link>
+          <Link href='' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Demo Video</Link>
+          <Link href={process.env.NEXT_PUBLIC_BACKEND_URL || ''} target='_blank' rel='noopener noreferrer' className='hover:text-black'>Restful API</Link>
         </div>
       </div>
-      <Link href='#home' className='fixed bottom-0 right-0 m-4'>Back to Top</Link>
+      <Link href='#home' className='fixed bottom-0 right-0 m-4 hover:text-black'>Back to Top</Link>
     </div>
   );
 }
