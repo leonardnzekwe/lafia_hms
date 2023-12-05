@@ -10,23 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-+$5(#n^9=p5+)2wsilmk9h*hg5dp1%ykgs^r26)s@j2j&)&&)s"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -39,11 +30,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "api.apps.ApiConfig",
     "rest_framework",
+    "corsheaders",
 ]
 
-AUTH_USER_MODEL = "api.User"
-
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -73,15 +64,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "hms.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("POSTGRES_DATABASE"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": int(os.getenv("POSTGRES_DB_PORT", default=5432)),
+        "OPTIONS": {"sslmode": "require"},
+        "DISABLE_SERVER_SIDE_CURSORS": True,
+    },
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
 }
 
 
@@ -115,13 +115,39 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = "static/"
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# ------ PRODUCTION SECURITY SET-UPS --------
+
+# Set Django Secret Key
+SECRET_KEY = os.getenv(
+    key="SECRET_KEY",
+    default="59c16537f132dcc750389397040fe3eb7ace0794a01483ebd7f3db8ff074bf02",
+)
+
+# Set Allowed Hosts
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app"]
+CORS_ALLOW_ALL_ORIGINS = True
+
+# Dev Debug Turn Off by default
+DEBUG = os.getenv("DEBUG_MODE", default=False)
+
+# Static File Setup
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static_files_build" / "static"
+
+if not DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+    # Enable security settings by default
+    SECURE_HSTS_SECONDS = int(os.getenv("SECURE_HSTS_SECONDS", default=31536000))
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv(
+        "SECURE_HSTS_INCLUDE_SUBDOMAINS", default=True
+    )
+    SECURE_HSTS_PRELOAD = os.getenv("SECURE_HSTS_PRELOAD", default=True)
+    SECURE_SSL_REDIRECT = os.getenv("SECURE_SSL_REDIRECT", default=True)
+    CSRF_COOKIE_SECURE = os.getenv("CSRF_COOKIE_SECURE", default=True)
+    SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", default=True)
