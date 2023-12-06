@@ -35,6 +35,14 @@ export default function Home() {
       </div>
       {/* Main Section */}
       <div className='flex flex-col items-center justify-center space-y-5'>
+        {/* Demo Video Section */}
+        <div className="relative w-full p-4 pb-[52.8125%]">
+          <iframe
+            src="https://www.loom.com/embed/1ec9d169ebc84533aa0ae9bfec13c741?sid=f6d40414-29e5-4455-ad32-c1442a3dbda3?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+            allowFullScreen
+            className="absolute top-0 left-0 w-full h-full"
+          ></iframe>
+        </div>
         <div id="about">
           <div className='text-center mt-4 font-bold'>About Project</div>
           <div className='bg-teal-500 rounded-lg m-4 p-4 font-bold'>
@@ -120,7 +128,7 @@ export default function Home() {
       <div className='sticky bottom-0 bg-teal-500 p-2 my-4 mx-auto w-fit rounded-lg font-bold'>
         <div className='flex flex-row items-center justify-center space-x-5'>
           <Link href='https://github.com/leonardnzekwe/lafia_hms.git' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Github Repo</Link>
-          <Link href='' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Demo Video</Link>
+          <Link href='https://www.loom.com/share/1ec9d169ebc84533aa0ae9bfec13c741?sid=36d0e1a6-4e40-4fcc-8908-23ca9717f8d8' target='_blank' rel='noopener noreferrer' className='hover:text-black'>Demo Video</Link>
           <Link href={process.env.NEXT_PUBLIC_BACKEND_URL || ''} target='_blank' rel='noopener noreferrer' className='hover:text-black'>Restful API</Link>
         </div>
       </div>
