@@ -18,7 +18,6 @@ export default function Home() {
           <div className='flex flex-row p-5 top-0 sticky'>
             <Link href="/" className='left-0 hover:text-teal-500'>Lafia HMS</Link>
             <div className="ml-auto space-x-3">
-              <Link href='/' className='hover:text-teal-500'>Home</Link>
               <Link href='#about' className='hover:text-teal-500'>About Project</Link>
               <Link href='#feature' className='hover:text-teal-500'>Features</Link>
               <Link href='#team' className='hover:text-teal-500'>Dev Team</Link>

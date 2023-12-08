@@ -24,9 +24,13 @@ const iconMap: Record<string, JSX.Element> = {
 
 const DashboardStats: React.FC<DashboardStatsProps> = ({ endpoints }) => {
   const [stats, setStats] = useState<Record<string, number>>({});
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchStats = useCallback(async () => {
     try {
+      // Set loading state to true when starting to fetch data
+      setIsLoading(true);
+
       const statsData = await Promise.all(
         endpoints.map(async (endpoint) => {
           const response = await apiService.get(endpoint);
@@ -39,12 +43,28 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({ endpoints }) => {
       setStats(combinedStats);
     } catch (error) {
       console.error('Error fetching stats:', error);
+    } finally {
+      // Set loading state to false when data fetching is complete (success or error)
+      setIsLoading(false);
     }
   }, [endpoints]);
 
   useEffect(() => {
     fetchStats();
   }, [fetchStats]); // Run effect only on mount
+
+  if (isLoading && stats) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="relative flex flex-col items-center">
+          {/* Spinner */}
+          <div className="h-24 w-24 rounded-full border-8 border-gray-300 border-t-8 border-t-green-600 animate-spin mb-4"></div>
+          {/* Text */}
+          <p className="text-gray-300">Loading...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='bg-teal-300 m-4 p-4 rounded-3xl'>
