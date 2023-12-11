@@ -52,7 +52,7 @@ const Dashboard: React.FC = () => {
       {/* Main Section */}
       <div>
         {status === null && (
-          <DashboardStats endpoints={['doctors', 'nurses', 'patients', 'appointments', 'prescriptions', 'inventory']} />
+          <DashboardStats />
         )}
         {status === "doctors" && (
           <CrudComponent endpoint="doctors" fields={["first_name", "last_name", "phone", "specialty", "about"]} />

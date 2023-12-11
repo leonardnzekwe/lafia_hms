@@ -1,4 +1,8 @@
 from rest_framework import viewsets
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
 from api.models import (
     Patient,
     Doctor,
@@ -15,6 +19,29 @@ from api.serializers import (
     PrescriptionSerializer,
     InventorySerializer,
 )
+
+
+# Stats View
+class StatsView(APIView):
+    """View a Stats of all Entities"""
+
+    def get(self, request):
+        """Get the Stats of all Entities"""
+        try:
+            data = {
+                "doctors": Doctor.objects.count(),
+                "nurses": Nurse.objects.count(),
+                "patients": Patient.objects.count(),
+                "appointments": Appointment.objects.count(),
+                "prescriptions": Prescription.objects.count(),
+                "inventory": Inventory.objects.count(),
+            }
+
+            return Response(data)
+        except Exception as err:
+            return Response(
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR, data={f"Error: {err}"}
+            )
 
 
 # Patient Viewset

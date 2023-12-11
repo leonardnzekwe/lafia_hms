@@ -3,6 +3,9 @@ Hospital Mangement System
 
 # API Endpoints:
 
+**Stats:**
+- All Entity Stats: `GET /stats/`
+
 **Patient:**
 - List of Patients: `GET /patients/`
 - Patient Details: `GET /patients/<patient_id>/`

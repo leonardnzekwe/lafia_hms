@@ -9,10 +9,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link'
 
-interface DashboardStatsProps {
-  endpoints: string[];
-}
-
 const iconMap: Record<string, JSX.Element> = {
   doctors: <FontAwesomeIcon icon={faUserMd} />,
   nurses: <FontAwesomeIcon icon={faUserNurse} />,
@@ -22,7 +18,7 @@ const iconMap: Record<string, JSX.Element> = {
   inventory: <FontAwesomeIcon icon={faBox} />,
 };
 
-const DashboardStats: React.FC<DashboardStatsProps> = ({ endpoints }) => {
+const DashboardStats = () => {
   const [stats, setStats] = useState<Record<string, number>>({});
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -31,23 +27,17 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({ endpoints }) => {
       // Set loading state to true when starting to fetch data
       setIsLoading(true);
 
-      const statsData = await Promise.all(
-        endpoints.map(async (endpoint) => {
-          const response = await apiService.get(endpoint);
-          return { [endpoint]: response.data.length };
-        })
-      );
+      // Fetch all entities stats {entity: count}
+      const statsData = await apiService.get('stats');
 
-      // Combine stats from different endpoints
-      const combinedStats = Object.assign({}, ...statsData);
-      setStats(combinedStats);
+      setStats(statsData.data);
     } catch (error) {
       console.error('Error fetching stats:', error);
     } finally {
       // Set loading state to false when data fetching is complete (success or error)
       setIsLoading(false);
     }
-  }, [endpoints]);
+  }, []);
 
   useEffect(() => {
     fetchStats();

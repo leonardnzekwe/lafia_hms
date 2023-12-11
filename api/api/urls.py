@@ -7,6 +7,7 @@ from api.views import (
     NurseViewSet,
     PatientViewSet,
     PrescriptionViewSet,
+    StatsView,
 )
 
 router = routers.DefaultRouter()
@@ -19,4 +20,5 @@ router.register(r"inventory", InventoryViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("stats", StatsView.as_view(), name="stats"),
 ]
