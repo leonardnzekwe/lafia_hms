@@ -26,9 +26,9 @@ Guideline on how to install the project:
 # Contributing Team
 The Lafia HMS was built as team by:
 
-- [Rahmat Folorunsho](https://github.com/rahma-cloud)
-- [Ifeanyi Akamigbo](https://github.com/valentine1244)
-- [Leonard Nzekwe](https://github.com/leonardnzekwe)
+- [Rahmat Folorunsho](https://github.com/rahma-cloud) - UI/UX/Frontend
+- [Ifeanyi Akamigbo](https://github.com/valentine1244) - Frontend/Backend
+- [Leonard Nzekwe](https://github.com/leonardnzekwe) - Backend/DevOps
 
 # Technology
 We strived to follow the industry best standards. So we seperated our backend logic from our front end logic. We exposed the data via API endpoints, which is consumed by the frontend through making a http request to the endpoints.
